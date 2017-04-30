@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse"
+          name="saleorderprocessing_fetch_item_gs_seq">
+   <payloadFactory media-type="xml">
+      <format>
+         <dat:fetchItemByType_gs xmlns:dat="http://ws.wso2.org/dataservice">
+            <dat:type>$1</dat:type>
+            <dat:name>$2</dat:name>
+         </dat:fetchItemByType_gs>
+      </format>
+      <args>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:type"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:name"/>
+      </args>
+   </payloadFactory>
+</sequence>

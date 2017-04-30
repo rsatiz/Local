@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse"
+          name="saleorderprocessing_update_quantity_gs_seq">
+   <payloadFactory media-type="xml">
+      <format>
+         <dat:updateItemQuantity_gs xmlns:dat="http://ws.wso2.org/dataservice">
+            <dat:value>$1</dat:value>
+            <dat:itemid>$2</dat:itemid>
+         </dat:updateItemQuantity_gs>
+      </format>
+      <args>
+         <arg xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:value"/>
+         <arg xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:itemid"/>
+      </args>
+   </payloadFactory>
+</sequence>

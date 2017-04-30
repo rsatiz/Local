@@ -1,0 +1,13 @@
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+	name="Tatkarak_Travelmanagement_flightbackendservice_proxy" transports="https,http" statistics="disable" trace="disable"
+	startOnLoad="true">
+	<target>
+		<outSequence>
+			<send />
+		</outSequence>
+		<endpoint
+		name="endpoint_urn_uuid_76aec0f3-ad62-4f14-9846-25cfc5345452">
+		<address uri="http://localhost:8280/echo" />
+		</endpoint>
+	</target>
+</proxy>

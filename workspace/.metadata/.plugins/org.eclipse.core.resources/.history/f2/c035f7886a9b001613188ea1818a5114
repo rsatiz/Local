@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="saleordermanagement"
+       transports="https http"
+       startOnLoad="true"
+       trace="disable">
+   <description/>
+   <target inSequence="saleorderprocessing_main_seq"
+           outSequence="saleorderprocessing_out_seq"/>
+   <publishWSDL key="gov:/yenlo/saleorder/resources/wsdl/SalesOrder_DSS.wsdl"/>
+</proxy>

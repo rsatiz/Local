@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server PASSWORD="admin" SERVER_URL="https://localhost:9443/" USERNAME="admin" hostname="localhost" id="WSO2 Carbon remote server at localhost" name="WSO2 Carbon remote server at localhost" server-type="org.wso2.developerstudio.eclipse.carbon.server.remote" server-type-id="org.wso2.developerstudio.eclipse.carbon.server.remote" start-timeout="600" stop-timeout="15" timestamp="1">
+    <list key="RCS_MODULES_LIST" value0="org.wso2.developerstudio.eclipse.carbon.moduleFactory:saleorderprocessing_demo_cap"/>
+    <list key="modules" value0="saleorderprocessing_demo_cap::org.wso2.developerstudio.eclipse.carbon.moduleFactory:saleorderprocessing_demo_cap::org.wso2.developerstudio.eclipse.carbon.module::1.0"/>
+  </server>
+</servers>

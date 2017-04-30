@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse"
+          name="saleorderprocessing_createso_gs_seq">
+   <payloadFactory media-type="xml">
+      <format>
+         <dat:createSaleOrder_gs xmlns:dat="http://ws.wso2.org/dataservice">
+            <dat:custid>$1</dat:custid>
+            <dat:poid>$2</dat:poid>
+            <dat:custname>$3</dat:custname>
+            <dat:itemid>$4</dat:itemid>
+            <dat:quantity>$5</dat:quantity>
+         </dat:createSaleOrder_gs>
+      </format>
+      <args>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:custid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:poid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:custname"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:itemid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:req_quantity"/>
+      </args>
+   </payloadFactory>
+   
+</sequence>

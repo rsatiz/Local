@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="saleorderprocessing_main_seq">
+   <log>
+      <property xmlns:ns="http://org.apache.synapse/xsd"
+                name="actionnameactionname"
+                expression="get-property('Action')"/>
+   </log>
+   <filter xmlns:ns="http://org.apache.synapse/xsd"
+           source="get-property('Action')"
+           regex=".*fetchallsaleorder.*">
+      <then>
+			<sequence name="saleorderprocessing_total_quantity_aggregate_seq"/>
+      </then>
+      <else>
+         <filter xmlns:dat="http://ws.wso2.org/dataservice" xpath="//dat:source ='gs' ">
+            <then>
+               <log>
+                  <property name="source" value="inside gs"/>
+                  <property name="actionnnnnnnnn"
+                            expression="fn:concat(get-property('Action'),'_gs')"/>
+               </log>
+               <property name="actioname" expression="fn:concat(get-property('Action'),'_gs')"/>
+               <switch source="get-property('actioname')">
+                  <case regex=".*createSaleOrder_gs">
+                     <log>
+                        <property name="symbol" value="createSaleOrder_gs"/>
+                     </log>
+                     <sequence key="saleorderprocessing_createso_gs_seq"/>
+					 <!--payloadFactory media-type="xml">
+      <format>
+         <dat:createSaleOrder_gs xmlns:dat="http://ws.wso2.org/dataservice">
+            <dat:custid>$1</dat:custid>
+            <dat:poid>$2</dat:poid>
+            <dat:custname>$3</dat:custname>
+            <dat:itemid>$4</dat:itemid>
+            <dat:quantity>$5</dat:quantity>
+         </dat:createSaleOrder_gs>
+      </format>
+      <args>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:custid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:poid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:custname"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:itemid"/>
+         <arg xmlns:dat="http://ws.wso2.org/dataservice"
+              xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              evaluator="xml"
+              expression="//dat:req_quantity"/>
+      </args>
+   </payloadFactory-->
+                     
+                  </case>
+                  <case regex=".*fetchItemByType_gs">
+                     <log>
+                        <property name="symbol" value="fetchItemByType_gs"/>
+                     </log>
+                      <sequence key="saleorderprocessing_fetch_item_gs_seq"/>
+                      
+                  </case>
+                  <case regex=".*updateItemQuantity_gs">
+                     <log>
+                        <property name="symbol" value="updateItemQuantity_gs"/>
+                     </log>
+					 <sequence key="saleorderprocessing_update_quantity_gs_seq"/>
+                  </case>
+                  <default>
+                     <drop/>
+                  </default>
+               </switch>
+               <header name="Action" expression="get-property('actioname')"/>
+            </then>
+            <else>
+               <header name="Action" expression="get-property('Action')"/>
+            </else>
+         </filter>
+         <log level="full"/>
+         <send>
+            <endpoint>
+               <address uri="https://localhost:9445/services/SalesOrder_DSS?wsdl"/>
+            </endpoint>
+         </send>
+      </else>
+   </filter>
+</sequence>
