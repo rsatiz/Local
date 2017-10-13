@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <item>
+        <file>tathkarah-config.xml</file>
+        <path>/_system/governance/tathkarah/flight-backend-service/commons</path>
+        <mediaType>application/xml</mediaType>
+    </item>
+</resources>
